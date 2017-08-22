@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="my.css">
+    <title>Title</title>
+
+</head>
+
+
+<body>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '226260881184170',
+            xfbml      : true,
+            version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<div class="container" style="padding: 40px;">
+    <div class="row" style="width: 50%; margin: auto;">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input id="searchtext" type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+        <button id="searchbtn" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button><button id="clearbtn" type="button" class="btn btn-default">Clear</button>
+      </span>
+
+            </div>
+        </div>
+    </div>
+
+<br><br>
+
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a id = "usersl" data-toggle="tab" href="#usersp">Users</a></li>
+        <li><a id = "pagesl" data-toggle="tab" href="#pagesp">Pages</a></li>
+        <li><a id = "eventsl" data-toggle="tab" href="#eventsp">Events</a></li>
+        <li><a id = "placesl" data-toggle="tab" href="#placesp">Places</a></li>
+        <li><a id = "groupsl" data-toggle="tab" href="#groupsp">Groups</a></li>
+        <li><a id = "favl" data-toggle="tab" href="#favp">Favourites</a></li>
+
+    </ul>
+
+    <div class="tab-content">
+        <div id="usersp" class="tab-pane fade in active">
+
+            <table class="table table-hover" >
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Picture</th>
+                <th>Favorite</th>
+                <th>Detals</th>
+            </tr>
+            </thead>
+
+            <tbody id="usertable">
+
+            </tbody>
+        </table>
+            <div class="pgplace"></div>
+        </div>
+        <div id="pagesp" class="tab-pane fade">
+            <table class="table table-hover" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Picture</th>
+                    <th>Favorite</th>
+                    <th>Detals</th>
+                </tr>
+                </thead>
+                <tbody id="pagetable">
+
+                </tbody>
+            </table>
+            <div class="pgplace"></div>
+        </div>
+        <div id="eventsp" class="tab-pane fade">
+            <table class="table table-hover" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Picture</th>
+                    <th>Favorite</th>
+                    <th>Detals</th>
+                </tr>
+                </thead>
+                <tbody id="eventtable">
+
+                </tbody>
+            </table>
+            <div class="pgplace"></div>
+        </div>
+        <div id="placesp" class="tab-pane fade">
+            <table class="table table-hover" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Picture</th>
+                    <th>Favorite</th>
+                    <th>Detals</th>
+                </tr>
+                </thead>
+                <tbody id="placetable">
+
+                </tbody>
+            </table>
+            <div class="pgplace"></div>
+        </div>
+        <div id="groupsp" class="tab-pane fade">
+            <table class="table table-hover" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Picture</th>
+                    <th>Favorite</th>
+                    <th>Detals</th>
+                </tr>
+                </thead>
+                <tbody id="grouptable">
+
+                </tbody>
+            </table>
+            <div class="pgplace"></div>
+        </div>
+        <div id="favp" class="tab-pane fade">
+            <table class="table table-hover" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Picture</th>
+                    <th>Type</th>
+                    <th>Favorite</th>
+                    <th>Detals</th>
+                </tr>
+                </thead>
+                <tbody id="favtable">
+
+                </tbody>
+            </table>
+            <div class="pgplace"></div>
+        </div>
+
+        <div id="detalsp" class="tab-pane fade">
+            <div id="detalcontainer" class="container" style="width: 100%;">
+
+                <div class="row">
+                    <div class="col-sm-6" >
+                        <div class="container">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Albums</div>
+                                <div class="panel-body">
+                                    <div class="panel-group" id="albumpanel">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Posts</div>
+                                <div class="panel-body" id="postpanel">
+                                    <div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40%</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="jquery-3.2.0.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script>
+    var selectedtype = "user";
+    var token = "EAADNyHdzFaoBAJjcJOn8hLHcwcgcYzIQ3ZBGdC2ijdzjvZAZBL7mwkVYcX6f3GlojAuLdZClY8Guuf8sFkd5ZCuGeIh1b6ZAeUCid9wZAocrp0ZBwRTZAfd8A2NLN41BbW0sse2dZA04VLZBV3WkqTOBsGc";
+    var pagen = 1;
+    var usern = 1;
+    var eventn = 1;
+    var groupn = 1;
+    var placen = 1;
+    currentprofpic = "";
+    currentfbname = "";
+    $("#usersl").click(function () {
+        selectedtype = "user";
+        usern = 1;
+        search(selectedtype,1);
+
+    });
+    $("#pagesl").click(function () {
+        selectedtype = "page";
+        pagen = 1;
+        search(selectedtype,1);
+
+    });
+    $("#eventsl").click(function () {
+        eventn = 1;
+        selectedtype = "event";
+        search(selectedtype,1);
+
+    });
+    $("#placesl").click(function () {
+        placen = 1;
+        selectedtype = "place";
+        search(selectedtype,1);
+
+    });
+    $("#groupsl").click(function () {
+        groupn = 1;
+        selectedtype = "group";
+        search(selectedtype,1);
+
+    });
+
+    function showfav() {
+        tag="";
+        for (var i = 0; i < localStorage.length; i++){
+            val = localStorage.getItem(localStorage.key(i)).split("=");
+            id = localStorage.key(i);
+
+            tag+= "<tr><td>"+i+"</td><td>"+val[0]+"</td><td>"+"<img src='"+"http://graph.facebook.com/" +id+ "/picture?type=square"+"'/>"+"</td>";
+            tag+= "<td>"+val[1]+"</td><td><div class='well well-sm'>"+"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span></div>";
+            tag+= "</td><td><div  class='well well-sm'><span href='#detalsp' data-toggle='tab' class='glyphicon glyphicon-list-alt' aria-hidden='true'></span></div></td></tr>";
+
+
+
+
+        }
+        $("#favtable").html($(tag));
+        $(document).off("click",".glyphicon-trash").on("click",".glyphicon-trash",function () {
+            localStorage.removeItem($(this).parent().parent().parent().children('td').eq(2).html().split("/")[3]);
+            showfav();
+        })
+    }
+    $("#favl").click(function () {
+        showfav();
+
+    });
+
+    $("#searchbtn").click(function () {
+        if($("#searchtext").val()===""){
+            alert("PLEASE ENTER SOMETHING TO SEARCH");
+            return;
+        }else{
+            search(selectedtype,1);
+        }
+
+        //localStorage.clear();
+        //document.getElementById("usertable").innerHTML = tag;
+//        FB.ui({
+//            //app_id: "226260881184170",
+//            method: 'feed',
+//            link: 'https://developers.facebook.com/docs/',
+//            //picture: "Url_of_the_Picture",
+//            //name: "Name_of_the_Object",
+//            //href: 'https://developers.facebook.com/docs/',
+//            caption: "The_Caption"
+//        }, function(response){
+//            if (response && !response.error_message)
+//                Success
+//            else
+//                Failed
+//        });
+//        FB.ui({
+//            method: 'feed',
+//            link: '',
+//            caption: 'An example caption',
+//        }, function(response){});
+
+    });
+    
+
+    function search (t,pn) {
+
+        counter = 0;
+        tag = "";
+        ptag = '<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar"aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%"> 40% </div> </div>';
+        $(".pgplace").append($(ptag));
+        $("#" + t + "table").html("");
+        $.ajax({
+            type: 'GET',
+            url: "fb.php?type=" + t + "&value=" + $('#searchtext').val() + "&page=" + pn,
+            dataType: 'json',
+            success: function (data) {
+                $.each(data.data, function (index, element) {
+
+                    tag += "<tr><td>" + counter + "</td><td>" + element.name + "</td><td>" + "<img src='" + "http://graph.facebook.com/" + element.id + "/picture?type=square" + "'/>" + "</td>";
+                    if(localStorage.getItem(element.id) === null){
+                        tag += "<td>" + "<div class='well well-sm'><span class='favstar glyphicon glyphicon-star-empty' aria-hidden='true'></span></div>";
+                    }
+                    else {
+                        tag += "<td>" + "<div class='well well-sm'><span class='favstar glyphicon glyphicon-star' aria-hidden='true'></span></div>";
+                    }
+                    tag += "</td><td><div class='well well-sm'><span href='#detalsp' data-toggle='tab' class='glyphicon glyphicon-list-alt' aria-hidden='true'></span></div></td></tr>";
+                    counter += 1;
+
+                });
+                $("#" + t + "table").html($(tag));
+                pagetag = "<div class='ppanel" + t + "'><span class='input-group-btn'>";
+                $("." + t + "per").remove();
+                $("." + t + "next").remove();
+                if (data.hasper === "true") {
+                    pagetag += "<button id='searchbtn' class='btn btn-default " + t + "per" + "' type='button'><span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span></button>";
+
+                }
+                if (data.hasnext === "true") {
+                    pagetag += "<button type='button' class='btn btn-default " + t + "next" + "'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span></button> ";
+
+                }
+                pagetag += "</span></div>";
+                $(".ppanel" + t).remove();
+                $("#" + t + "sp").append($(pagetag));
+                if (data.hasper === "true") {
+                    $(document).off("click", "." + t + "per").on("click", "." + t + "per", function () {
+                        if (t === "user") {
+                            usern -= 1;
+                            search("user", usern);
+                        }
+                        if (t === "page") {
+                            pagen -= 1;
+                            search("page", pagen);
+                        }
+                        if (t === "event") {
+                            eventn -= 1;
+                            search("event", eventn);
+                        }
+                        if (t === "place") {
+                            placen -= 1;
+                            search("place", placen);
+
+                        }
+                        if (t === "group") {
+                            groupn -= 1;
+                            search("group", groupn);
+
+                        }
+
+                    });
+                }
+                if (data.hasnext === "true") {
+                    $("." + t + "next").unbind();
+                    $(document).off("click", "." + t + "next").on("click", "." + t + "next", function () {
+
+                        if (t === "user") {
+                            usern += 1;
+
+                            search("user", usern);
+
+                        }
+                        if (t === "page") {
+                            pagen += 1;
+
+                            search("page", pagen);
+                        }
+                        if (t === "event") {
+                            eventn += 1;
+
+                            search("event", eventn);
+                        }
+                        if (t === "place") {
+                            placen += 1;
+
+                            search("user", usern);
+
+                        }
+                        if (t === "group") {
+                            groupn += 1;
+
+                            search("group", groupn);
+
+                        }
+                    });
+                }
+
+            $(".progress").remove();
+
+            }
+        });
+    }
+    $(document).on("click",".favstar",function () {
+
+
+        if($(this).hasClass("glyphicon-star")){
+            id = $(this).parent().parent().parent().children('td').eq(2).html().split("/")[3];
+            localStorage.removeItem(id);
+
+            $(this).toggleClass("glyphicon-star glyphicon-star-empty");
+        }else{
+            id = $(this).parent().parent().parent().children('td').eq(2).html().split("/")[3];
+            localStorage.setItem(id,$(this).parent().parent().parent().children('td').eq(1).html()+"="+selectedtype);
+            $(this).toggleClass("glyphicon-star-empty glyphicon-star");
+        }
+
+
+    });
+    $(document).on("click",".glyphicon-list-alt",function () {
+
+        ptag = '<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar"aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%"> 40% </div> </div>';
+        $("#detalcontainer").prepend($(ptag));
+        $(".pakkon").remove();
+        ttt = '<div class="container" style="width: 100%;"><div class="row"><div class="col-sm-6">';
+        ttt += "<div class='well pakkon well-sm'><span href='#"+selectedtype+"sp' data-toggle='tab' class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span></div>";
+        ttt += '</div><div class="col-sm-6">';
+        ttt += "<div style='float: right; text-align: center' class='well pakkon well-sm fblogo'><img width='40' height='40' src='facebook.png'></img></div>";
+        ttt += '</div></div></div>';
+
+        $("#detalcontainer").prepend(ttt);
+        console.log(currentprofpic);
+        $(document).off("click",".fblogo").on("click",".fblogo",function () {
+            FB.ui({
+                method: 'share',
+                link: window.location.href,
+                href: window.location.href,
+                caption: 'FB SEARCH FROM USC CSCI571',
+                picture: currentprofpic,
+                name: currentfbname
+            }, function(response){
+                if (response && !response.error_message){alert("success");}
+                else{alert("failed");}
+
+
+
+            });
+        });
+
+        $("#albumpanel").html("");
+        id = $(this).parent().parent().parent().children('td').eq(2).html().split("/")[3];
+        fbname = $(this).parent().parent().parent().children('td').eq(1).html();
+        fbpic = $(this).parent().parent().parent().children('td').eq(2).html().split('"')[1];
+        currentprofpic = fbpic;
+        currentfbname = fbname;
+            $.ajax({
+                type: 'GET',
+                url: "aap.php?id="+id,
+                dataType: 'json',
+                success:function (data) {
+                    imgtag="";
+                    if(data.albums && data.albums.data){
+                        $.each(data.albums.data,function (albumindex,albumvalue) {
+                            imgtag +="<div class='panel sss panel-default'> <div class='panel-heading'> <h4 class='panel-title'> <a data-toggle='collapse' data-parent='#albumpanel' href='#collapse"+albumindex+"'>";
+                            imgtag +=albumvalue.name+"</a> </h4> </div><div id='collapse"+albumindex+"' class='panel-collapse collapse'><div class='panel-body'>";
+                            if(albumvalue.photos && albumvalue.photos.data){
+                                $.each(albumvalue.photos.data,function (picindex,picvalue) {
+
+                                    imgtag += "<img class= 'fbpic' src='"+picvalue.images[picvalue.images.length-1].source+"'></img><br><br><br>"
+                                });
+                            }
+
+                            imgtag +="</div> </div> </div>";
+                            $("#albumpanel").append($(imgtag));
+                            imgtag="";
+                        });
+                    }
+                    if (data.posts &&data.posts.data){
+                        posttag="";
+                        $.each(data.posts.data, function (postindex,postvalue) {
+                            posttag += "<div class='panel dd panel-default'> <div class='panel-body'>";
+                            posttag += " <table><tr><td>";
+                            posttag += "<img src='"+fbpic+"'></img>";
+                            posttag += "</td><td>";
+                            posttag += "<b>"+ fbname + "<br><br>"+postvalue.created_time.substr(0,10)+" "+ postvalue.created_time.substr(11,8);
+                            posttag += "</td></tr><tr><td colspan='2'>";
+                            posttag += postvalue.message+"</div> </div>";
+                            posttag += "</td></tr></table>";
+                            $("#postpanel").append($(posttag));
+                            posttag="";
+                        })
+                    }
+                    $(".progress").remove();
+                }})
+    });
+
+$("#clearbtn").click(function () {
+    $("#searchtext").val("");
+    $("#pagetable").html("");
+    $("#usertable").html("");
+    $("#grouptable").html("");
+    $("#eventtable").html("");
+    $("#placetable").html("");
+
+
+
+});
+
+
+
+
+
+</script>
+</body>
+
+
+</html>
